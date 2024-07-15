@@ -26,7 +26,7 @@ const Forgot = () => {
 
   function sendData(e){
     e.preventDefault();
-    axios.post("http://localhost:8000/forgot",Data).then((response)=>{
+    axios.post("https://quizappv2-one.vercel.app/forgot",Data).then((response)=>{
       //console.log(response);
       if(response.data===false){
         //console.log('Invalid Username or Password');

@@ -24,7 +24,7 @@ const Loginform = () => {
   };
   function sendData(e){
     e.preventDefault();
-    axios.post("https://quizappv2-one.vercel.app/",Data).then((response)=>{
+    axios.post("https://quizappv2-one.vercel.app",Data).then((response)=>{
       //console.log(response);
       if(response.data===false){
         //console.log('Invalid Username or Password');

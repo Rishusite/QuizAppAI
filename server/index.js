@@ -16,7 +16,7 @@ const port=process.env.PORT || 8000;
 
 app.use(cors(
   {
-    origin:["https://quizappv2-frontend.vercel.app"],
+    origin: ["https://quizappv2-frontend.vercel.app"],
     methods: ["POST","GET"],
     credentials: true
   }

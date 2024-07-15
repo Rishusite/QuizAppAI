@@ -1,7 +1,7 @@
 import { useState,useEffect,useRef } from 'react'
 import axios from 'axios';
 import {NavLink,useNavigate} from "react-router-dom";
-import bgmVideo from 'F:/Quiz App/client/src/Intro assests/bgvideo.mov';
+import bgmVideo from './Intro assests/bgvideo.mov';
 
 const Forgot = () => {
   const videoEl = useRef(null);
@@ -60,6 +60,7 @@ const Forgot = () => {
       
       <div className='relative z-10 w-screen h-screen flex justify-center items-center'>
       <div>
+        <div className='absolute left-[2vw] top-[1vw] text-white  text-[2vw] font-title'>SmartQuizAI</div>
         <form className='absolute right-[8vw] top-[18vh] bg-transparent rounded-xl px-[4vw] pt-[1vw] pb-[3vw] backdrop-blur-xl border border-white'>
 
           <div className='flex justify-center items-center'>

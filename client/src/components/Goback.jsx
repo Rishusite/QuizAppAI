@@ -2,9 +2,9 @@ import React from 'react'
 import axios from 'axios'
 import { useState,useEffect,useRef } from 'react'
 import {NavLink,useNavigate} from "react-router-dom";
-import bgmVideo from 'F:/Quiz App/client/src/Intro assests/bgvideo.mov';
+import bgmVideo from './Intro assests/bgvideo.mov';
 
-const Goback = ({uid,score}) => {
+const Goback = ({uid,score,promt}) => {
   const videoEl = useRef(null);
   const navigate= useNavigate();
   useEffect(() => {
@@ -12,6 +12,10 @@ const Goback = ({uid,score}) => {
       console.error("Error attempting to play", error);
     });
   }, []);
+  async function sendStats(){
+    const data={id:uid,score:score, sub:promt};
+    await axios.post("http://localhost:8000/sendStats",data).then((res)=>console.log(res)).catch((err)=>console.log(err));
+  };
   return (
     <div>
       <video
@@ -34,6 +38,7 @@ const Goback = ({uid,score}) => {
             <div className='flex justify-center items-center w-full mt-[2vw]'>
               <div>
                 <button onClick={()=>{
+                  sendStats();
                   navigate(`/userhandle/${uid}`);
                 }} className=' text-white rounded-lg text-[2vw]  bg-blue-400 px-[1vw] py-[1vw] hover:scale-110 hover:bg-blue-500 duration-300'>Move To Home</button> 
               </div>

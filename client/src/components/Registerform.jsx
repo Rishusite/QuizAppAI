@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import bgmVideo from 'F:/Quiz App/client/src/Intro assests/bgvideo.mov';
+import bgmVideo from './Intro assests/bgvideo.mov';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
@@ -86,7 +86,7 @@ const Registerform = () => {
   };
 
   return (
-    <div className="fixed w-full h-full object-cover">
+    <div className="fixed z-10 w-full h-full object-cover">
       <video
         loop
         muted
@@ -96,8 +96,9 @@ const Registerform = () => {
       />
 
 
-      <div className='relative z-10 w-screen h-screen flex justify-center items-center'>
+      <div className='z-20 w-screen h-screen flex justify-center items-center'>
           <div>
+            <div className='absolute left-[2vw] top-[1vw] text-white  text-[2vw] font-title'>SmartQuizAI</div>
             <form className='absolute right-[8vw] top-[7vh] bg-transparent rounded-xl px-[4vw] pt-[1vw] pb-[3vw] backdrop-blur-xl border border-white'>
 
               <div className='flex justify-center items-center'>

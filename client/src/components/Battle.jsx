@@ -2,13 +2,14 @@ import React from 'react'
 import axios from 'axios'
 import { useState,useEffect,useRef } from 'react'
 import {NavLink,useNavigate} from "react-router-dom";
-import bgmVideo from 'F:/Quiz App/client/src/Intro assests/bgvideo.mov';
+import bgmVideo from './Intro assests/bgvideo.mov';
+
 
 
 
 const Battle = ({isover,setisover,uid,score,setScore,prompt,name}) => {
   const videoEl = useRef(null);
-
+  const [over,setOver]=useState(-1);
   const [qcss,setqcss]=useState('relative -z-10 w-screen h-screen flex justify-center items-center');
 
   const [bcss,setbcss]=useState('fixed bottom-0 w-screen mb-[2vw] flex justify-center items-center z-20');
@@ -23,20 +24,29 @@ const Battle = ({isover,setisover,uid,score,setScore,prompt,name}) => {
     });
   }, []);
 
-  const [data,setData]=useState({question: "",options: {a: "",b:"",c:"",d:""},correctAns: {x:"",y:""}});
+  const dataserver=useRef({question: "",options: {a: "",b:"",c:"",d:""},correctAns: {x:"",y:""}});
+
+  const [data,setData]=useState({question: "AI is generating the questions please wait for some secs.....",options: {a: "N/A",b:"N/A",c:"N/A",d:"N/A"},correctAns: {x:"",y:""}});
   
-  function getting(){
-    axios.get(`http://localhost:8000/generateqs/${prompt}`).then((response)=>{
-      if(response.data==='false'){
-        console.log('Blasted by AI')
-      }
-      else{
-        let obj={question: response.data.question,options: response.data.options,correctAns: response.data.correctAns};
-        setData(obj);
-        setOver(1);
-        qn.current=qn.current+1;
-      }
-    }).catch((err)=>console.log('Some Error',err));
+  //const [quizdata,setquizdata]=useState({});
+  async function getting(){
+    if(qn.current<5){
+      await axios.get(`http://localhost:8000/generateqs/${prompt}`).then((response)=>{
+        if(response.data===false){
+          console.log('Blasted by AI')
+          let obj={question: "Sorry, AI was not able to generate this question. Please wait for about 10 secs",options: {a: "N/A",b:"N/A",c:"N/A",d:"N/A"},correctAns: {x:"",y:""}};
+          setData(obj);
+        }
+        else{
+          let obj={question: response.data.question,options: response.data.options,correctAns: response.data.correctAns};
+          setData(obj);
+          dataserver.current=obj;
+          setOver(1);
+          qn.current=qn.current+1;
+        }
+      }).catch((err)=>console.log('Some Error',err));
+    }
+    
   };
   const [corr,setCorr]=useState(0);
 
@@ -68,47 +78,57 @@ const Battle = ({isover,setisover,uid,score,setScore,prompt,name}) => {
 
   function waiting(){
     return new Promise((resolve,reject)=>{
-      setTimeout(()=>{
-        getting();
+      setTimeout(async()=>{
+        await getting();
         resolve(200);
       },10000);
     }) 
   };
 
+  function getDate() {
+    const today = new Date();
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
+    const date = today.getDate();
+    const time=today.getHours() 
+    + ':' + today.getMinutes() 
+    + ":" + today.getSeconds();
+    //${month}/${date}/${year}:
+    return `${month}/${date}/${year} ${time}`;
+  };
 
   async function play(){
-      getting();
-
+      const date=getDate();
+      let quizobj1={id:uid,sub:prompt,date:date};
+      await axios.post('http://localhost:8000/quizdata1',quizobj1).then((res)=>{
+        console.log('Success11111...!!!!');
+      }).catch((err)=>{
+        console.log('QuizData11111 Blast......!',err);
+      });
+      //await getting();
       setinstcss('fixed -z-10 w-screen h-screen flex justify-center items-center');
 
       setqcss('relative z-10 w-screen h-screen flex justify-center items-center');
 
       setbcss('fixed bottom-0 w-screen mb-[2vw] flex justify-center items-center -z-20');
-
-      while(qn.current<3){
-        console.log(qn.current);
+      while(qn.current<10){
+        //console.log(qn.current);
         await waiting();
-      }
-      /*
-      await waiting(); //5
-      await waiting(); //6
-      await waiting(); //7
-      await waiting(); //8
-      await waiting(); //9
-      await waiting(); //10
-      await waiting(); //11
-      await waiting(); //12
-      await waiting(); //13
-      await waiting(); //14
-      await waiting(); //15
-      await waiting(); //16
-      await waiting(); //17
-      await waiting(); //18
-      await waiting(); //19
-      */
-  }
+        //console.log(dataserver.current);
+        let quizobj={id:uid,sub:prompt,date:date,qsn:qn.current};
+        //console.log(quizobj);
+        await axios.post('http://localhost:8000/quizdata',quizobj).then((res)=>{
+          console.log('Success...!!!!');
+        }).catch((err)=>{
+          console.log('QuizData Blast......!',err);
+        });
+      };
+      
+       
 
-  const [over,setOver]=useState(-1);
+    };
+
+  
 
   const button1=useRef(null);
   const button2=useRef(null);
@@ -144,8 +164,10 @@ const Battle = ({isover,setisover,uid,score,setScore,prompt,name}) => {
     button3.current.style.backgroundColor="";
     button4.current.style.backgroundColor="";
   }
-  if(qn.current===4){
-    setisover(1);
+  if(qn.current===5){
+    setTimeout(() => {
+      setisover(1);
+    }, 10000); 
   }
 
 
@@ -190,14 +212,53 @@ const Battle = ({isover,setisover,uid,score,setScore,prompt,name}) => {
 
 
       <div className={instcss}>
-        <div className='bg-transparent rounded-xl backdrop-blur-3xl border border-white max-w-[70%] px-[1vw] py-[1vw] '>
+        <div className='bg-transparent rounded-xl backdrop-blur-3xl border border-white max-w-[75%] px-[1vw] py-[1vw] '>
         <div className="flex justify-center items-center ">
             <div className="text-black px-[1vw] text-[2vw] font-semibold">
               Test Instructions
             </div>
           </div>
           <div className='text-[1.5vw] text-yellow-100'>
-            You will be given 10 mcq questions made by ai in time limit of 60secs
+            <div>
+              1. You will be given 10 mcq questions made by AI and you have to answer it in the time limit of 60secs each.
+            </div>
+            
+            <div>
+              2. Click the start button to commence the quiz.
+            </div>
+
+            <div>
+              3. Just after clicking the start button you will be shown a blank template of mcq which will be filled by AI after generating the question.So please wait for some time.
+            </div>
+
+            <div>
+              4. At top right corner your updated score will be shown.
+            </div>
+
+            <div>
+              5. There is NO NEGATIVE MARKING.
+            </div>
+
+            <div>
+              6. After clicking to any option you will be able to se the correct answer as well.
+            </div>
+
+            <div>
+              7. If you want to go back to home page you can click to back button now only.
+            </div>
+
+            <div>
+              8. Sometimes AI is not able to generate the question, So just be calm it will soon generatethe correct mcq for you and that mcq will be dropped.
+            </div>
+
+            <div>
+              9. If you find any difficulty you can contact us freely any time.
+            </div>
+
+            <div>
+              10. Now just gear up and get ready. ALL THE BEST!
+            </div>
+
           </div>
         </div>
       </div>
@@ -221,6 +282,7 @@ const Battle = ({isover,setisover,uid,score,setScore,prompt,name}) => {
       
     </div>
   )
+
 }
 
 export default Battle

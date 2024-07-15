@@ -1,20 +1,35 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useState,useEffect } from 'react'
 
-const Stats = () => {
+const Stats = ({id,sub,total,settotaltest}) => {
+  const [tt,settt]=useState(0);
+  const [avg,setavg]=useState(0);
+  const [maxi,setmaxi]=useState(0);
+  
+  useEffect(() => {
+    getStats();
+  }, []);
+  async function getStats(){
+    await axios.get(`http://localhost:8000/getStats/${id}/${sub}`).then((res)=>{
+      if(res.data===false){
+        settt(0);
+        setavg(0);
+        setmaxi(0);
+      }
+      else{
+        settt(res.data.total);
+        setavg(res.data.avg);
+        setmaxi(res.data.max);
+      }
+      
+      //console.log('Working........',res);
+    }).catch((err)=>console.log(err));
+  };
   return (
-    <div className='absolute z-20 bottom-[35%] left-[5%] text-white text-[1.5vw] border border-white rounded-lg px-[1.5vw] py-[1vw]'>
-      <div className='flex items-center justify-center pb-[1vw]'>
-        <div>
-          Your Stats
-        </div>
-      </div>
-      <div>
-        <p>Number of Games Played: 10</p>
-        <p>Average score in Science: 8</p>
-        <p>Average score in History: 7</p>
-        <p>Average score in GK: 0</p>
-        <p>Average score in CA: 9</p>
-      </div>
+    <div className='flex flex-row space-x-[0.9vw] justify-between items-center text-[1.5vw] mx-[0.5vw] font-thin text-amber-950'>
+            <div>Total Tests: {tt}</div>
+            <div>Avg Score: {avg}</div>
+            <div>Max Score: {maxi}</div>
     </div>
   )
 }

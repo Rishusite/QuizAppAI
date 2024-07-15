@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import {NavLink,useNavigate} from "react-router-dom";
+import {useTypewriter, Cursor} from "react-simple-typewriter";
 
 const Loginform = () => {
   const dataObj={
@@ -40,10 +41,24 @@ const Loginform = () => {
       console.log("Some Error",err);
     })
     setData(dataObj);
-  }
+  };
+  const [text]=useTypewriter({
+    words: ['“Education is the most powerful weapon which you can use to change the world” – Nelson Mandela ','Login to increase your knowledge...!'],
+    loop:{},
+    typeSpeed: 100,
+    deleteSpeed: 40
+  });
   return (
     <div className='relative z-10 w-screen h-screen flex justify-center items-center'>
+      <div className='absolute left-[5%] bottom-[40%] text-white text-[2vw] max-w-[35%]'>
+          <h1>
+            <span>{text}</span>
+            <Cursor/>
+          </h1>
+        </div>
       <div>
+        <div className='absolute left-[2vw] top-[1vw] text-white  text-[2vw] font-title'>SmartQuizAI</div>
+        
         <form className='absolute right-[8vw] top-[18vh] bg-transparent rounded-xl px-[4vw] pt-[1vw] pb-[3vw] backdrop-blur-xl border border-white'>
 
           <div className='flex justify-center items-center'>

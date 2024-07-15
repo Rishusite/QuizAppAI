@@ -1,5 +1,5 @@
 import React, { useEffect, useRef ,useState} from "react";
-import bgmVideo from 'F:/Quiz App/client/src/Intro assests/bgvideo.mov';
+import bgmVideo from './Intro assests/bgvideo.mov';
 import Navbar from "./Navbar";
 import Stats from "./Stats";
 import Playchoice from "./Playchoice";
@@ -37,8 +37,7 @@ const Userhandle = () => {
         className="fixed z-0 w-full h-full object-cover"
       />
       <div className="absolute z-10 w-full h-full backdrop-blur-lg">
-        <Navbar dataobj={userData}/>
-        <Stats uid={params.id}/>
+        <Navbar dataobj={userData} />
         <Playchoice uid={params.id} name={userData.name}/>
       </div>
     </div>

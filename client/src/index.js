@@ -8,6 +8,8 @@ import Registerform from "./components/Registerform";
 import Questions from './components/Questions';
 import Userhandle from './components/Userhandle';
 import Forgot from './components/Forgot';
+import Contactus from './components/Contactus';
+import Downloads from './components/Downloads';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,6 +17,8 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<App/>}/>
+        <Route path='/contact' element={<Contactus/>}/>
+        <Route path='/userhandle/:id/download' element={<Downloads/>}/>
         <Route path='/forgot' element={<Forgot/>}/>
         <Route path='/register' element={<Registerform/>}/>
         <Route path='/userhandle/:id' element={<Userhandle/>}/>

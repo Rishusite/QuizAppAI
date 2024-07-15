@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState} from "react";
-import bgmVideo from './Intro assests/bgvideo.mov';
+import bgmVideo from './components/Intro assests/bgvideo.mov';
 import Loginform from "./components/Loginform";
 //import sound from "./Intro assests/mainMusic.mp3"
 
@@ -17,6 +17,7 @@ export default function App() {
   };
   <button className="fixed bottom-[1vw] left-[2vw] text-[2vw] text-white z-20" onClick={playMusic}>Music</button>
   */
+  
   return (
     <div className="App">
       <video
@@ -28,7 +29,6 @@ export default function App() {
         className="fixed z-0 w-full h-full object-cover"
       />
       <Loginform/>
-      
     </div>
   );
 }

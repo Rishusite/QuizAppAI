@@ -14,7 +14,7 @@ const Goback = ({uid,score,promt}) => {
   }, []);
   async function sendStats(){
     const data={id:uid,score:score, sub:promt};
-    await axios.post("http://localhost:8000/sendStats",data).then((res)=>console.log(res)).catch((err)=>console.log(err));
+    await axios.post("https://quizappv2-one.vercel.app/sendStats",data).then((res)=>console.log(res)).catch((err)=>console.log(err));
   };
   return (
     <div>

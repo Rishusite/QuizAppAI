@@ -31,7 +31,7 @@ const Battle = ({isover,setisover,uid,score,setScore,prompt,name}) => {
   //const [quizdata,setquizdata]=useState({});
   async function getting(){
     if(qn.current<5){
-      await axios.get(`http://localhost:8000/generateqs/${prompt}`).then((response)=>{
+      await axios.get(`https://quizappv2-one.vercel.app/${prompt}`).then((response)=>{
         if(response.data===false){
           console.log('Blasted by AI')
           let obj={question: "Sorry, AI was not able to generate this question. Please wait for about 10 secs",options: {a: "N/A",b:"N/A",c:"N/A",d:"N/A"},correctAns: {x:"",y:""}};
@@ -100,7 +100,7 @@ const Battle = ({isover,setisover,uid,score,setScore,prompt,name}) => {
   async function play(){
       const date=getDate();
       let quizobj1={id:uid,sub:prompt,date:date};
-      await axios.post('http://localhost:8000/quizdata1',quizobj1).then((res)=>{
+      await axios.post('https://quizappv2-one.vercel.app/quizdata1',quizobj1).then((res)=>{
         console.log('Success11111...!!!!');
       }).catch((err)=>{
         console.log('QuizData11111 Blast......!',err);
@@ -117,7 +117,7 @@ const Battle = ({isover,setisover,uid,score,setScore,prompt,name}) => {
         //console.log(dataserver.current);
         let quizobj={id:uid,sub:prompt,date:date,qsn:qn.current};
         //console.log(quizobj);
-        await axios.post('http://localhost:8000/quizdata',quizobj).then((res)=>{
+        await axios.post('https://quizappv2-one.vercel.app/quizdata',quizobj).then((res)=>{
           console.log('Success...!!!!');
         }).catch((err)=>{
           console.log('QuizData Blast......!',err);

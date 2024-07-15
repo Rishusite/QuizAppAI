@@ -14,7 +14,14 @@ dotenv.config();
 const app=express();
 const port=process.env.PORT || 8000;
 
-app.use(cors());
+app.use(cors(
+  {
+    origin:["https://quizappv2-frontend.vercel.app"],
+    methods: ["POST","GET"],
+    credentials: true
+  }
+  
+));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -77,6 +84,11 @@ const model = genAI.getGenerativeModel({ model: "gemini-pro", generationConfig }
 // 3. Generate Content
 //let arr=[];
 let aires='';
+app.get('/',(req,res)=>{
+  return res.send("Hello From Server");
+})
+
+
 app.get('/generateqs/:prompt',async (req,res)=>{
     const sub=req.params.prompt;
     const prompt=`write a question on ${sub} with options and answer`;

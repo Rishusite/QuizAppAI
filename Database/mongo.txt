@@ -1,8 +1,0 @@
-mongodb+srv://rishabhusa018:Rishabh@123#123@cluster0.1dylj2f.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-
-,{
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false
-}

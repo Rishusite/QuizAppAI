@@ -99,13 +99,13 @@ app.get('/generateqs/:prompt',async (req,res)=>{
       const obj={question: question,options: options,correctAns: correctAns};
       //arr.push(obj);
       aires=response.text();
-      res.send(obj);
+      return res.send(obj);
       //console.log("array",arr);
     }
     catch(err){
       console.log('Blast----!!!!!',err);
       aires='Sorry, AI was not able to generate this question. Please wait for about 10 secs';
-      res.send('false');
+      return res.send('false');
     }
     
 })
@@ -122,7 +122,7 @@ app.post('/',async(req,res)=>{
   //cconsole.log("Post request",result);
   if(Object.keys(result).length===0){
     //console.log("not found");
-    res.send('false');
+    return res.send('false');
   }
   else{
     //console.log(result._id);
@@ -225,7 +225,7 @@ app.post('/forgot',async(req,res)=>{
   //cconsole.log("Post request",result);
   if(Object.keys(result).length===0){
     //console.log("not found");
-    res.send('false');
+    return res.send('false');
   }
   else{
     //console.log(result._id);
@@ -243,7 +243,7 @@ app.post('/userhandle',async(req,res)=>{
   //cconsole.log("Post request",result);
   if(Object.keys(result).length===0){
     //console.log("not found");
-    res.send('false');
+    return res.send('false');
   }
   else{
     //console.log(result._id);

@@ -31,7 +31,7 @@ const Battle = ({isover,setisover,uid,score,setScore,prompt,name}) => {
   //const [quizdata,setquizdata]=useState({});
   async function getting(){
     if(qn.current<5){
-      await axios.get(`https://quizapp-server-one.vercel.app/${prompt}`).then((response)=>{
+      await axios.get(`https://quizapp-server-one.vercel.app/generateqs/${prompt}`).then((response)=>{
         if(response.data===false){
           console.log('Blasted by AI')
           let obj={question: "Sorry, AI was not able to generate this question. Please wait for about 10 secs",options: {a: "N/A",b:"N/A",c:"N/A",d:"N/A"},correctAns: {x:"",y:""}};

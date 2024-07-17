@@ -9,8 +9,9 @@ const Stats = ({id,sub,total,settotaltest}) => {
   useEffect(() => {
     getStats();
   }, []);
+  axios.defaults.withCredentials = true;
   async function getStats(){
-    await axios.get(`http://localhost:8000/getStats/${id}/${sub}`).then((res)=>{
+    await axios.get(`https://quizapp-server-one.vercel.app/getStats/${id}/${sub}`).then((res)=>{
       if(res.data===false){
         settt(0);
         setavg(0);

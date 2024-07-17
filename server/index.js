@@ -16,7 +16,7 @@ const port=process.env.PORT || 8000;
 
 app.use(cors(
   {
-    origin: ["https://quizapp-server-one.vercel.app"],
+    origin: ["https://quizapp-frontend-rho.vercel.app"],
     methods: ["POST","GET"],
     credentials: true
   }

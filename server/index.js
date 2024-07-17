@@ -89,6 +89,7 @@ app.get('/',(req,res)=>{
 
 
 app.get('/generateqs/:prompt',async (req,res)=>{
+    console.log("working");
     const sub=req.params.prompt;
     const prompt=`write a question on ${sub} with options and answer`;
     const result = await model.generateContent(prompt);

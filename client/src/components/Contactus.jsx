@@ -10,6 +10,7 @@ const Contactus = () => {
     });
   }, []);
 
+  axios.defaults.withCredentials = true;
   const dataObj={
     name:"",
     query:""
@@ -24,7 +25,7 @@ const Contactus = () => {
 
   function sendData(e){
     e.preventDefault();
-    axios.post("https://quizappv2-one.vercel.app/contactus",Data).then((response)=>{
+    axios.post("https://quizapp-server-one.vercel.app/contactus",Data).then((response)=>{
       //console.log(response);
       if(response.data===true){
         //console.log('Invalid Username or Password');

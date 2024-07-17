@@ -11,7 +11,7 @@ const Forgot = () => {
       console.error("Error attempting to play", error);
     });
   }, []);
-
+  axios.defaults.withCredentails = true;
   const dataObj={
     username:"",
     phonenumber:"",
@@ -26,7 +26,7 @@ const Forgot = () => {
 
   function sendData(e){
     e.preventDefault();
-    axios.post("https://quizappv2-one.vercel.app/forgot",Data).then((response)=>{
+    axios.post("https://quizapp-server-one.vercel.app/forgot",Data).then((response)=>{
       //console.log(response);
       if(response.data===false){
         //console.log('Invalid Username or Password');

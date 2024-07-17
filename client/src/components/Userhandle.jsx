@@ -11,7 +11,8 @@ const Userhandle = () => {
   const userid=params.id;
   const data={id: userid};
   const [userData,setUserdata]=useState({});
-  axios.post("http://localhost:8000/userhandle",data).then((res)=>{
+  axios.defaults.withCredentails = true;
+  axios.post("https://quizapp-server-one.vercel.app/userhandle",data).then((res)=>{
     if(res.data===false){
       navigate('/');
     }

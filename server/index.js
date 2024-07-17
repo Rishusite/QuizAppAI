@@ -73,7 +73,7 @@ const support=mongoose.model('Support',contact);
 
 // 1. Configuration
 const api_key = process.env.GEMINI_API_KEY;
-const genAI = new GoogleGenerativeAI(api_key);
+const genAI = new GoogleGenerativeAI("AIzaSyAi7M8yf9E51S3h55_TPvQxSXA9CbwccxM");
 const generationConfig = { temperature: 0.9, topP: 1, topK: 1, maxOutputTokens: 10000 };
 
 // 2. Initialise Model

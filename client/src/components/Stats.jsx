@@ -10,7 +10,7 @@ const Stats = ({id,sub,total,settotaltest}) => {
     getStats();
   }, []);
   async function getStats(){
-    await axios.get(`https://quizappv2-one.vercel.app/${id}/${sub}`).then((res)=>{
+    await axios.get(`http://localhost:8000/getStats/${id}/${sub}`).then((res)=>{
       if(res.data===false){
         settt(0);
         setavg(0);

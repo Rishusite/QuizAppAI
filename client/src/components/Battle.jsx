@@ -111,7 +111,7 @@ const Battle = ({isover,setisover,uid,score,setScore,prompt,name}) => {
       setqcss('relative z-10 w-screen h-screen flex justify-center items-center');
 
       setbcss('fixed bottom-0 w-screen mb-[2vw] flex justify-center items-center -z-20');
-      while(qn.current<10){
+      while(qn.current<5){
         //console.log(qn.current);
         await waiting();
         //console.log(dataserver.current);

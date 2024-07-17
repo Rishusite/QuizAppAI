@@ -33,9 +33,10 @@ const Registerform = () => {
   };
 
   const navigate=useNavigate();
+  axios.defaults.withCredentials = true;
   function sendDetails(e){
     e.preventDefault();
-    axios.post("https://quizappv2-one.vercel.app/register",Data).then((response)=>{
+    axios.post("https://quizapp-server-one.vercel.app/register",Data).then((response)=>{
       //console.log(response);
       if(response.data===true){
         setSuccess(1);

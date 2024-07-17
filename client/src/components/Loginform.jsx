@@ -22,9 +22,10 @@ const Loginform = () => {
   function redirect(){
     navi(`/userhandle/${userid}`);
   };
+  axios.defaults.withCredentials = true;
   function sendData(e){
     e.preventDefault();
-    axios.post("http://localhost:8000",Data).then((response)=>{
+    axios.post("https://quizapp-server-one.vercel.app",Data).then((response)=>{
       //console.log(response);
       if(response.data===false){
         //console.log('Invalid Username or Password');

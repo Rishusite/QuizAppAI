@@ -12,9 +12,10 @@ const Goback = ({uid,score,promt}) => {
       console.error("Error attempting to play", error);
     });
   }, []);
+  axios.defaults.withCredentials = true;
   async function sendStats(){
     const data={id:uid,score:score, sub:promt};
-    await axios.post("https://quizappv2-one.vercel.app/sendStats",data).then((res)=>console.log(res)).catch((err)=>console.log(err));
+    await axios.post("https://quizapp-server-one.vercel.app/sendStats",data).then((res)=>console.log(res)).catch((err)=>console.log(err));
   };
   return (
     <div>

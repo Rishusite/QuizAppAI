@@ -220,7 +220,7 @@ const Battle = ({isover,setisover,uid,score,setScore,prompt,name}) => {
           </div>
           <div className='text-[1.5vw] text-yellow-100'>
             <div>
-              1. You will be given 10 mcq questions made by AI and you have to answer it in the time limit of 60secs each.
+              1. You will be given 5 mcq questions made by AI and you have to answer it in the time limit of 60secs each.
             </div>
             
             <div>

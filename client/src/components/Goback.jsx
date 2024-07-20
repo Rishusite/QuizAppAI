@@ -30,7 +30,7 @@ const Goback = ({uid,score,promt}) => {
         <div className='relative z-20 flex justify-center items-center w-screen h-screen'>
         <div className='bg-transparent rounded-xl backdrop-blur-3xl border border-white max-w-[50%] px-[3vw] py-[5vw] '>
           <div className='text-black text-[2vw]'>
-              Your Score Was {score}/10
+              Your Score Was {score}/5
           </div>
 
           <div className='text-yellow-100 text-[1.5vw] mt-[0.5vw]'>

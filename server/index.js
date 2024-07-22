@@ -359,10 +359,10 @@ app.get('/downloads/:id/:sub',async(req,res)=>{
 app.post('/create-pdf', (req, res) => {
   pdf.create(pdfTemplate(req.body.data.date,req.body.data.tests,req.body.sub), {}).toFile('result.pdf', (err) => {
       if(err) {
-          return res.send(Promise.reject());
+          res.send(Promise.reject());
       }
 
-      return res.send(Promise.resolve());
+      res.send(Promise.resolve());
   });
 })
 

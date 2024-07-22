@@ -359,14 +359,15 @@ app.get('/downloads/:id/:sub',async(req,res)=>{
 app.post('/create-pdf', (req, res) => {
   pdf.create(pdfTemplate(req.body.data.date,req.body.data.tests,req.body.sub), {}).toFile('result.pdf', (err) => {
       if(err) {
-          res.send(Promise.reject());
+          return res.send(Promise.reject());
       }
 
-      res.send(Promise.resolve());
+      return res.send(Promise.resolve());
   });
 })
 
 app.get('/fetch-pdf', (req, res) => {
+  const abspath=path.resolve();
   return res.sendFile(`${abspath}/result.pdf`);
 })
 

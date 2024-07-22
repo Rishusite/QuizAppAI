@@ -53,6 +53,7 @@ const Downloads = () => {
   };
 
 async function createAndDownloadPdf(data,sub){
+  axios.defaults.withCredentials = true;
   await axios.post('https://quizapp-server-one.vercel.app/create-pdf', {data: data, sub: sub})
     .then(async() => await axios.get('https://quizapp-server-one.vercel.app/fetch-pdf', { responseType: 'blob' }))
     .then((res) => {

@@ -52,16 +52,20 @@ const Downloads = () => {
     }).catch((err)=>console.log(err));
   };
 
-async function createAndDownloadPdf(data,sub){
-  axios.defaults.withCredentials = true;
-  await axios.post('https://quizapp-server-one.vercel.app/create-pdf', {data: data, sub: sub});
-  console.log("Pdf Created......");
+
+async function gettingpdf(){
   axios.defaults.withCredentials = true;
   await axios.get('https://quizapp-server-one.vercel.app/fetch-pdf', { responseType: 'blob' })
     .then((res) => {
       const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
         saveAs(pdfBlob, 'smartquizai.pdf');
       });
+};
+async function createAndDownloadPdf(data,sub){
+  axios.defaults.withCredentials = true;
+  await axios.post('https://quizapp-server-one.vercel.app/create-pdf', {data: data, sub: sub});
+  console.log("Pdf Created......");
+  gettingpdf();
 };
   return (
     <div>

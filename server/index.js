@@ -365,7 +365,8 @@ app.post('/create-pdf', (req, res) => {
 })
 
 app.get('/fetch-pdf', (req, res) => {
-  try{
+  /*
+    try{
      const abspath=path.resolve();
      return res.sendFile(`${abspath}/result.pdf`);
     
@@ -374,7 +375,9 @@ app.get('/fetch-pdf', (req, res) => {
     console.log('download error.....',err);
     return res.send('false');
   }
-  
+  */
+  console.log('download error.....',err);
+    return res.send('false');
 })
 
 

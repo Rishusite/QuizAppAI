@@ -364,11 +364,12 @@ app.post('/create-pdf', (req, res) => {
   });
 })
 
-app.get('/fetch-pdf', (req, res) => {
+app.get('/fetch-pdf/:id', (req, res) => {
   /*
   const abspath=path.resolve();
   return res.sendFile(`${abspath}/result.pdf`);
   */
+  const uid=req.params.id;
   const abspath=path.resolve();
   return res.sendFile(`./result.pdf`);
 })

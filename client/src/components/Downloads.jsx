@@ -55,7 +55,7 @@ const Downloads = () => {
 
 async function gettingpdf(){
   axios.defaults.withCredentials = true;
-  await axios.get('https://quizapp-server-one.vercel.app/fetch-pdf')
+  await axios.get('https://quizapp-server-one.vercel.app/fetch-pdf/1')
     .then((res) => {
       const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
         saveAs(pdfBlob, 'smartquizai.pdf');

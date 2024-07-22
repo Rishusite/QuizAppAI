@@ -371,7 +371,7 @@ app.get('/fetch-pdf', (req, res) => {
     
   }
   catch(err){
-    //console.log('download error.....',err);
+    console.log('download error.....',err);
     return res.send('false');
   }
   

@@ -365,12 +365,9 @@ app.post('/create-pdf', (req, res) => {
 })
 
 app.get('/fetch-pdf', (req, res) => {
-  /*
   const abspath=path.resolve();
   return res.sendFile(`${abspath}/result.pdf`);
-  */
-  const abspath=path.resolve();
-  return res.sendFile(`./result.pdf`);
+  
 })
 
 

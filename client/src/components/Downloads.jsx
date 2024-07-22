@@ -57,9 +57,15 @@ async function gettingpdf(){
   axios.defaults.withCredentials = true;
   await axios.get('https://quizapp-server-one.vercel.app/fetch-pdf')
     .then((res) => {
-      const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
+      if(res.data==='false'){
+        console.log("Can't find file");
+      }
+      else{
+        const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
         saveAs(pdfBlob, 'smartquizai.pdf');
-      });
+        });
+      }
+      
 };
 async function createAndDownloadPdf(data,sub){
   axios.defaults.withCredentials = true;

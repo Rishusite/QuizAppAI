@@ -64,7 +64,7 @@ async function gettingpdf(){
         const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
         saveAs(pdfBlob, 'smartquizai.pdf');
       }
-    )
+    })
 };
 async function createAndDownloadPdf(data,sub){
   axios.defaults.withCredentials = true;

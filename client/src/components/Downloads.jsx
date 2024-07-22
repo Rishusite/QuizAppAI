@@ -63,7 +63,6 @@ async function gettingpdf(){
       else{
         const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
         saveAs(pdfBlob, 'smartquizai.pdf');
-        });
       }
       
 };
